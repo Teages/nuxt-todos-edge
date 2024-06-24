@@ -35,7 +35,7 @@ async function main() {
   ].join(' '))).trim()
 
   // check if generated
-  if (output.split('\n').length <= 1) {
+  if (isMigrationEmpty(output)) {
     console.log(output)
     console.log(`No changes detected.`)
   }
@@ -69,4 +69,12 @@ function run(cmd: string) {
       resolve(stdout ? stdout : stderr)
     })
   })
+}
+
+function isMigrationEmpty(migration: string) {
+  const commands = migration
+    .split('\n')
+    .filter(line => line.trim().length > 0 && !line.startsWith('--'))
+
+  return commands.length === 0
 }
