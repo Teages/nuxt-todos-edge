@@ -1,10 +1,12 @@
-import { drizzle } from 'drizzle-orm/d1'
-import * as schema from '../database/schema'
+import { PrismaClient } from '@prisma/client'
+import { PrismaD1 } from '@prisma/adapter-d1'
 
-export { sql, eq, and, or } from 'drizzle-orm'
-
-export const tables = schema
-
-export function useDB() {
-  return drizzle(hubDatabase(), { schema })
+let prisma: PrismaClient | undefined
+export function usePrisma(): PrismaClient {
+  if (!prisma) {
+    const adapter = new PrismaD1(hubDatabase())
+    prisma = new PrismaClient({ adapter })
+    prisma.$connect()
+  }
+  return prisma
 }

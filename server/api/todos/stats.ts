@@ -1,9 +1,10 @@
-import { sql } from 'drizzle-orm'
-
 export default eventHandler(async () => {
   // Count the total number of todos
-  return await useDB().select({
-    todos: sql<number>`count(*)`,
-    users: sql<number>`count(distinct(${tables.todos.userId}))`
-  }).from(tables.todos).get()
+  return usePrisma().$queryRaw<{
+    todos: number
+    users: number
+  }>`
+    SELECT COUNT(*) AS todos, COUNT(DISTINCT(userId)) AS users
+    from todos
+  `
 })

@@ -1,4 +1,3 @@
-import { eq, and } from 'drizzle-orm'
 import { useValidatedParams, zh } from 'h3-zod'
 
 export default eventHandler(async (event) => {
@@ -6,18 +5,19 @@ export default eventHandler(async (event) => {
     id: zh.intAsString
   })
   const session = await requireUserSession(event)
+  const userId = session.user.id
 
-  // List todos for the current user
-  const deletedTodo = await useDB().delete(tables.todos).where(and(
-    eq(tables.todos.id, id),
-    eq(tables.todos.userId, session.user.id)
-  )).returning().get()
+  try {
+    const deletedTodo = await usePrisma().todos.delete({
+      where: { id, userId }
+    })
 
-  if (!deletedTodo) {
+    return deletedTodo
+  }
+  catch {
     throw createError({
       statusCode: 404,
       message: 'Todo not found'
     })
   }
-  return deletedTodo
 })

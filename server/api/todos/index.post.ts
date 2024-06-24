@@ -6,12 +6,13 @@ export default eventHandler(async (event) => {
   })
   const session = await requireUserSession(event)
 
-  // List todos for the current user
-  const todo = await useDB().insert(tables.todos).values({
-    userId: session.user.id,
-    title,
-    createdAt: new Date()
-  }).returning().get()
+  const todo = await usePrisma().todos.create({
+    data: {
+      userId: session.user.id,
+      title,
+      createdAt: new Date()
+    }
+  })
 
   return todo
 })

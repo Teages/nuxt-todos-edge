@@ -1,4 +1,3 @@
-import { eq, and } from 'drizzle-orm'
 import { useValidatedParams, useValidatedBody, z, zh } from 'h3-zod'
 
 export default eventHandler(async (event) => {
@@ -6,17 +5,15 @@ export default eventHandler(async (event) => {
     id: zh.intAsString
   })
   const { completed } = await useValidatedBody(event, {
-    completed: z.number().int().min(0).max(1)
+    completed: z.number().int().min(0).max(1).transform(Boolean)
   })
   const session = await requireUserSession(event)
+  const userId = session.user.id
 
-  // List todos for the current user
-  const todo = await useDB().update(tables.todos).set({
-    completed
-  }).where(and(
-    eq(tables.todos.id, id),
-    eq(tables.todos.userId, session.user.id)
-  )).returning().get()
+  const todo = await usePrisma().todos.update({
+    where: { id, userId },
+    data: { completed }
+  })
 
   return todo
 })

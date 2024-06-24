@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "todos" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
+    "completed" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
