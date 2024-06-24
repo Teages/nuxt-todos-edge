@@ -4,7 +4,7 @@ export default eventHandler(async () => {
     todos: number
     users: number
   }>`
-    SELECT COUNT(*) AS todos, COUNT(DISTINCT(userId)) AS users
+    SELECT COUNT(*) AS todos, COUNT(DISTINCT(user_id)) AS users
     from todos
   `
 })
