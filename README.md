@@ -6,9 +6,9 @@ A demonstration using [Nuxt](https://nuxt.com) with server-side rendering on the
 
 - [Server-Side Rendering on the Edge](https://nuxt.com/blog/nuxt-on-the-edge)
 - Authentication backed-in using [nuxt-auth-utils](https://github.com/Atinux/nuxt-auth-utils)
-- Leverage [Cloudflare D1](https://developers.cloudflare.com/d1/) as database and [drizzle ORM](https://orm.drizzle.team/)
+- Leverage [Cloudflare D1](https://developers.cloudflare.com/d1/) as database and [Prisma](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1)
 - User interface made with [Nuxt UI](https://ui.nuxt.com)
-- Embed [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview/) in the [Nuxt DevTools](https://devtools.nuxt.com)
+- Embed [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview/) in the [Nuxt DevTools](https://devtools.nuxt.com) (Yes it works with Prisma by [Nuxt Hub](https://hub.nuxt.com))
 
 ## Live demo
 
@@ -72,6 +72,10 @@ pnpm dev --remote
 ```
 
 Learn more about remote storage on https://hub.nuxt.com/docs/getting-started/remote-storage
+
+## Notice
+
+Prisma is still in beta for Cloudflare D1, and it doesn't support migrations yet. So you need create the migrations manually.
 
 ## License
 
