@@ -21,6 +21,12 @@ export default defineNuxtConfig({
       }
     }
   },
+  nitro: {
+    typescript: {
+      // eslint compatible
+      tsConfig: { compilerOptions: { noEmit: true } }
+    }
+  },
   devtools: {
     enabled: true
   }
