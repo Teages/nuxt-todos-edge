@@ -51,6 +51,9 @@ importers:
       prisma:
         specifier: ^5.15.1
         version: 5.15.1
+      tsx:
+        specifier: ^4.15.7
+        version: 4.15.7
       typescript:
         specifier: 5.5.2
         version: 5.5.2
@@ -4656,6 +4659,11 @@ packages:
   tsscmp@1.0.6:
     resolution: {integrity: sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA==}
     engines: {node: '>=0.6.x'}
+
+  tsx@4.15.7:
+    resolution: {integrity: sha512-u3H0iSFDZM3za+VxkZ1kywdCeHCn+8/qHQS1MNoO2sONDgD95HlWtt8aB23OzeTmFP9IU4/8bZUdg58Uu5J4cg==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   tuf-js@2.2.1:
     resolution: {integrity: sha512-GwIJau9XaA8nLVbUXsN3IlFi7WmQ48gBUrl3FTkkL/XLu/POhBzfmX9hd33FNMX1qAsfl6ozO1iMmW9NC8YniA==}
@@ -10491,6 +10499,13 @@ snapshots:
   tslib@2.6.3: {}
 
   tsscmp@1.0.6: {}
+
+  tsx@4.15.7:
+    dependencies:
+      esbuild: 0.21.5
+      get-tsconfig: 4.7.5
+    optionalDependencies:
+      fsevents: 2.3.3
 
   tuf-js@2.2.1:
     dependencies:

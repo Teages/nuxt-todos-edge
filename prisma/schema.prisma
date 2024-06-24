@@ -15,5 +15,7 @@ model Todos {
   completed Boolean  @default(false)
   createdAt DateTime @default(now()) @map("created_at")
 
+  @@index([userId])
+
   @@map("todos")
 }

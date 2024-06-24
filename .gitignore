@@ -11,3 +11,5 @@ dist
 .netlify
 db.sqlite-*
 .data
+
+prisma/tmp.db
